@@ -1,12 +1,133 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt_br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Testes do meu db</title>
-</head>
-<body>
-    <h1>Testezin</h1>
-    <p>Vamos testar esse db do linux. Nao pode faltar "Hello World" XD</p>
-</body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Formulário cadastro de novo usuário</h1>
+    <p>Digite as informações corretas.</p>
+
+    <label for="lbl_consorcio">Consórcio</label> <br />
+    <input
+      type="text"
+      id="ipn_consorcio"
+      required
+      placeholder="Consórcio que você trabalha..."
+    />
+    <br />
+
+    <label for="lbl_nome">Nome</label>
+    <p>Digite sem abreviações</p>
+    <input
+      type="text"
+      id="ipn_nome"
+      required
+      placeholder="Digite seu nome completo..."
+    />
+    <br />
+
+    <label for="lbl_cpf">Cpf</label>
+    <p>11 números apenas sem pontos e traços</p>
+    <input type="text" id="ipn_cpf" required placeholder="Ex.: 12345678910" />
+    <br />
+
+    <label for="lbl_email">E-mail</label>
+    <p>Digite um e-mail válido</p>
+    <input
+      type="text"
+      id="ipn_email"
+      required
+      placeholder="Ex.: sistemavelp@velp.com.br..."
+    />
+    <br />
+
+    <label for="lbl_perfil">Perfil</label>
+    <p>Selecione uma das opções</p>
+    <select name="slc_perfil" id="slc_perfil" required>
+      <option value="" disabled selected hidden>Selecione...</option>
+      <option value="reg">Regulação</option>
+      <option value="ea">Equipe de Atendimento</option>
+    </select>
+    <br />
+
+    <label for="lbl_funcao">Função</label> <br />
+    <select name="slc_funcao" id="slc_funcao" required>
+      <option value="" disabled selected hidden>Selecione...</option>
+      <option value="csc">(CSC)Condutor(a) Socorrista</option>
+      <option value="enf">(ENF)Enfermeiro(a)</option>
+      <option value="med">(MED)Médico(a)</option>
+      <option value="tef">(TEF)Técnico(a) de Enfermagem</option>
+      <option value="bml">(BML)Bombeiro(a) Militar</option>
+      <option value="ctf">(CTF)Controlador(a) de Frota</option>
+      <option value="cor">(COR)Coordenação</option>
+      <option value="enfr">(ENFr)Enfermeiro(a) Regulador(a)</option>
+      <option value="far">(FAR)Farmacêutico(a)</option>
+      <option value="mar">(MAR)Médico(a) Acadêmico(a) Regulador(a)</option>
+      <option value="medr">(MEDr)Médico(a) Regulador(a)</option>
+      <option value="crt">(CRT)TARM Controle de Frota</option>
+      <option value="tad">(TAD)Técnico Administrativo</option>
+      <option value="tar">(TAR)Técnico(a) Auxiliar de Frota</option>
+    </select>
+    <br />
+
+    <label for="lbl_telefone">Telefone</label>
+    <p>Digite apenas números</p>
+    <input
+      type="text"
+      id="ipn_telefone"
+      required
+      placeholder="Ex.: 31912345678"
+    />
+    <br />
+
+    <label for="lbl_voip">Usuário Voip</label>
+    <p>Apenas Para TARM's (Telefonistas)</p>
+    <p>Apenas Números</p>
+    <input type="text" id="ipn_voip" placeholder="Sua Resposta" /> <br />
+
+    <label for="lbl_registro">Selecione o Registro</label> <br />
+    <select name="slc_registro" id="slc_registro" required>
+      <option value="" disabled selected hidden>Selecione...</option>
+      <option value="crm">CRM(Médico(a))</option>
+      <option value="enf">COREM(Enfermeiro(a) ou Téc. Enfermagem)</option>
+      <option value="med">CIM(Bombeiro(a))</option>
+      <option value="tef">CFF(Farmacêutico(a))</option>
+      <option value="bml">CNH(Condutor(a) Socorrista)</option>
+      <option value="ctf">CPF(TARM, Frota, ADM)</option>
+    </select>
+    <br />
+
+    <label for="lbl_numRegistro">Digite o Número do Registro</label>
+    <p>Apenas Números</p>
+    <input
+      type="text"
+      id="ipn_numRegistro"
+      required
+      placeholder="Ex.: 123456"
+    />
+    <br />
+
+    <label for="lbl_estado">Digite seu estado em siglas</label> <br />
+    <input
+      type="text"
+      id="ipn_estado"
+      required
+      placeholder="Ex.: MG, SP, RJ, ES..."
+    />
+    <br />
+
+    <label for="lbl_cidade">Digite sua cidade</label>
+    <p>Cidade onde fica localizada a base ou central de regulação</p>
+    <input
+      type="text"
+      id="ipn_cidade"
+      required
+      placeholder="Ex.: Belo Horizonte, Betim, Guarapari..."
+    />
+
+    <button type="submit">Enviar</button>
+  </body>
 </html>
