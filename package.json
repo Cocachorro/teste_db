@@ -1,0 +1,24 @@
+{
+  "name": "teste_db",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cocachorro/teste_db.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Cocachorro/teste_db/issues"
+  },
+  "homepage": "https://github.com/Cocachorro/teste_db#readme",
+  "dependencies": {
+    "express": "^5.2.1",
+    "mariadb": "^3.5.4"
+  }
+}
