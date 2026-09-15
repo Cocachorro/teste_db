@@ -4,38 +4,51 @@ const mariadb = require('mariadb');
 const app = express();
 const porta = 3000;
 
-// 1. Configura a ponte com o seu banco de dados
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(__dirname));
+
 const pool = mariadb.createPool({
   host: '127.0.0.1', 
-  user: 'vitor', // Digite seu usuário do MariaDB aqui
-  password: 'Velp@1234', // Digite sua senha aqui
-  database: 'cadastros_teste' // Seu banco de dados criado
+  user: 'vitor',
+  password: 'Velp@1234',
+  database: 'cadastros_teste' 
 });
-
-// 2. Rota para testar se a conexão deu certo
-app.get('/teste-banco', async (req, res) => {
-  let conn;
-  try {
-    // Tenta pegar a conexão com o banco
-    conn = await pool.getConnection(); 
-    res.send("<h1>Sucesso! O Express entrou no MariaDB!</h1>");
-  } catch (err) {
-    // Se der erro de senha ou acesso, ele mostra aqui
-    res.status(500).send("Erro ao conectar no banco: " + err.message);
-  } finally {
-    // Devolve a conexão para não travar o banco
-    if (conn) conn.release(); 
-  }
-});
-
-// 3. Libera o CSS e o HTML para aparecerem na tela
-app.use(express.static(__dirname));
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
 });
 
-// 4. Liga o servidor web
+app.post('/salvar', async (req, res) => {
+  let conn;
+  try {
+    const { consorcio, nome, cpf, email, slc_perfil, slc_funcao, telefone, voip, slc_registro, numRegistro, estado, cidade } = req.body;
+    
+    conn = await pool.getConnection();
+    
+    const sql = "INSERT INTO dados_cad (consorcio, nome, cpf, email, perfil, funcao, telefone, voip, nome_registro, registro, estado, cidade) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    
+    await conn.query(sql, [consorcio, nome, cpf, email, slc_perfil, slc_funcao, telefone, voip, slc_registro, numRegistro, estado, cidade]);
+    
+    res.send("<h1>Cadastro salvo com sucesso no MariaDB! Pode fechar esta página.</h1>");
+  } catch (err) {
+    res.status(500).send("Deu erro ao salvar: " + err.message);
+  } finally {
+    if (conn) conn.release();
+  }
+});
+
+app.get('/teste-banco', async (req, res) => {
+  let conn;
+  try {
+    conn = await pool.getConnection(); 
+    res.send("<h1>Sucesso! O Express conectou no MariaDB!</h1>");
+  } catch (err) {
+    res.status(500).send("Erro: " + err.message);
+  } finally {
+    if (conn) conn.release(); 
+  }
+});
+
 app.listen(porta, () => {
-    console.log(`Servidor no ar! Teste a conexão acessando: http://IP_DO_SEU_SERVIDOR:${porta}/teste-banco`);
+    console.log(`Servidor no ar na porta ${porta}!`);
 });
